@@ -1,0 +1,149 @@
+@prefix hg:      <http://herbariograph.pe/ontologia#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dwc:     <http://rs.tdwg.org/dwc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+
+<http://herbariograph.pe/ontologia>
+    a owl:Ontology ;
+    rdfs:label "HerbarioGraph"@es ;
+    rdfs:comment "Ontología del proyecto HerbarioGraph (Gestión del Conocimiento, UNMSM 2026-II). Alineada al estándar Darwin Core (TDWG), que es el que usa GBIF."@es ;
+    owl:versionInfo "0.2 - avance 1" .
+
+#################################################################
+#   Clases (11)
+#################################################################
+
+hg:Taxon a owl:Class ;
+    rdfs:label "Taxón"@es ;
+    rdfs:subClassOf dwc:Taxon ;
+    rdfs:comment "Grupo taxonómico de cualquier rango."@es .
+
+hg:Genero a owl:Class ;
+    rdfs:label "Género"@es ;
+    rdfs:subClassOf hg:Taxon ;
+    skos:closeMatch dwc:genus .
+
+hg:Especie a owl:Class ;
+    rdfs:label "Especie"@es ;
+    rdfs:subClassOf hg:Taxon ;
+    rdfs:comment "Nombre de especie, aceptado o sinónimo."@es .
+
+hg:Especimen a owl:Class ;
+    rdfs:label "Espécimen"@es ;
+    rdfs:subClassOf dwc:Occurrence ;
+    rdfs:comment "Ejemplar de herbario (en Darwin Core: basisOfRecord = PreservedSpecimen)."@es .
+
+hg:Colecta a owl:Class ;
+    rdfs:label "Colecta"@es ;
+    rdfs:subClassOf dwc:Event ;
+    rdfs:comment "Evento de colecta: dónde, cuándo, a qué altitud y por quién."@es .
+
+hg:Localidad a owl:Class ;
+    rdfs:label "Localidad"@es ;
+    rdfs:subClassOf dcterms:Location ;
+    skos:closeMatch dwc:locality .
+
+hg:Region a owl:Class ;
+    rdfs:label "Región"@es ;
+    rdfs:subClassOf dcterms:Location ;
+    skos:closeMatch dwc:stateProvince .
+
+hg:Colector a owl:Class ;
+    rdfs:label "Colector"@es ;
+    rdfs:subClassOf foaf:Agent ;
+    skos:closeMatch dwc:recordedBy .
+
+hg:Herbario a owl:Class ;
+    rdfs:label "Herbario"@es ;
+    rdfs:subClassOf foaf:Organization ;
+    skos:closeMatch dwc:institutionCode .
+
+hg:Publicacion a owl:Class ;
+    rdfs:label "Publicación"@es ;
+    rdfs:subClassOf dcterms:BibliographicResource .
+
+hg:Fuente a owl:Class ;
+    rdfs:label "Fuente"@es ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:comment "Documento o registro de donde se extrajo un hecho (trazabilidad)."@es .
+
+#################################################################
+#   Propiedades de objeto (10)
+#################################################################
+
+hg:perteneceA a owl:ObjectProperty ;
+    rdfs:label "pertenece a"@es ;
+    rdfs:domain hg:Especie ; rdfs:range hg:Genero .
+
+hg:identificadoComo a owl:ObjectProperty ;
+    rdfs:label "identificado como"@es ;
+    rdfs:domain hg:Especimen ; rdfs:range hg:Especie ;
+    skos:closeMatch dwc:scientificName .
+
+hg:provieneDe a owl:ObjectProperty ;
+    rdfs:label "proviene de"@es ;
+    rdfs:domain hg:Especimen ; rdfs:range hg:Colecta .
+
+hg:colectadoPor a owl:ObjectProperty ;
+    rdfs:label "colectado por"@es ;
+    rdfs:domain hg:Colecta ; rdfs:range hg:Colector ;
+    skos:closeMatch dwc:recordedBy .
+
+hg:colectadoEn a owl:ObjectProperty ;
+    rdfs:label "colectado en"@es ;
+    rdfs:domain hg:Colecta ; rdfs:range hg:Localidad .
+
+hg:ubicadaEn a owl:ObjectProperty ;
+    rdfs:label "ubicada en"@es ;
+    rdfs:domain hg:Localidad ; rdfs:range hg:Region .
+
+hg:depositadoEn a owl:ObjectProperty ;
+    rdfs:label "depositado en"@es ;
+    rdfs:domain hg:Especimen ; rdfs:range hg:Herbario .
+
+hg:esSinonimoDe a owl:ObjectProperty ;
+    rdfs:label "es sinónimo de"@es ;
+    rdfs:domain hg:Especie ; rdfs:range hg:Especie ;
+    rdfs:comment "Une un nombre sinónimo con el nombre aceptado."@es .
+
+hg:citadoEn a owl:ObjectProperty ;
+    rdfs:label "citado en"@es ;
+    rdfs:domain hg:Especimen ; rdfs:range hg:Publicacion .
+
+hg:extraidoDe a owl:ObjectProperty ;
+    rdfs:label "extraído de"@es ;
+    rdfs:range hg:Fuente ;
+    rdfs:subPropertyOf prov:wasDerivedFrom .
+
+#################################################################
+#   Propiedades de datos (6)
+#################################################################
+
+hg:nombreCientifico a owl:DatatypeProperty ;
+    rdfs:domain hg:Taxon ; rdfs:range xsd:string ;
+    skos:closeMatch dwc:scientificName .
+
+hg:altitudMetros a owl:DatatypeProperty ;
+    rdfs:domain hg:Colecta ; rdfs:range xsd:decimal ;
+    skos:closeMatch dwc:minimumElevationInMeters .
+
+hg:fechaColecta a owl:DatatypeProperty ;
+    rdfs:domain hg:Colecta ; rdfs:range xsd:string ;
+    skos:closeMatch dwc:eventDate .
+
+hg:codigoCatalogo a owl:DatatypeProperty ;
+    rdfs:domain hg:Especimen ; rdfs:range xsd:string ;
+    skos:closeMatch dwc:catalogNumber .
+
+hg:url a owl:DatatypeProperty ;
+    rdfs:domain hg:Fuente ; rdfs:range xsd:anyURI .
+
+hg:fragmentoTexto a owl:DatatypeProperty ;
+    rdfs:domain hg:Fuente ; rdfs:range xsd:string ;
+    rdfs:comment "Texto original del que se extrajo el hecho."@es .

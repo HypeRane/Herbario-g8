@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#Genero">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="es">Género</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://herbariograph.pe/ontologia#Taxon"/>
+    <skos:closeMatch rdf:resource="http://rs.tdwg.org/dwc/terms/genus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#Localidad">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="es">Localidad</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dc/terms/Location"/>
+    <skos:closeMatch rdf:resource="http://rs.tdwg.org/dwc/terms/locality"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#ubicadaEn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="es">ubicada en</rdfs:label>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Localidad"/>
+    <rdfs:range rdf:resource="http://herbariograph.pe/ontologia#Region"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#colectadoPor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="es">colectado por</rdfs:label>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Colecta"/>
+    <rdfs:range rdf:resource="http://herbariograph.pe/ontologia#Colector"/>
+    <skos:closeMatch rdf:resource="http://rs.tdwg.org/dwc/terms/recordedBy"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#fragmentoTexto">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Fuente"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="es">Texto original del que se extrajo el hecho.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#perteneceA">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="es">pertenece a</rdfs:label>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Especie"/>
+    <rdfs:range rdf:resource="http://herbariograph.pe/ontologia#Genero"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#citadoEn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="es">citado en</rdfs:label>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Especimen"/>
+    <rdfs:range rdf:resource="http://herbariograph.pe/ontologia#Publicacion"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#url">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Fuente"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#identificadoComo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="es">identificado como</rdfs:label>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Especimen"/>
+    <rdfs:range rdf:resource="http://herbariograph.pe/ontologia#Especie"/>
+    <skos:closeMatch rdf:resource="http://rs.tdwg.org/dwc/terms/scientificName"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#altitudMetros">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Colecta"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <skos:closeMatch rdf:resource="http://rs.tdwg.org/dwc/terms/minimumElevationInMeters"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#Fuente">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="es">Fuente</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    <rdfs:comment xml:lang="es">Documento o registro de donde se extrajo un hecho (trazabilidad).</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#codigoCatalogo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Especimen"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <skos:closeMatch rdf:resource="http://rs.tdwg.org/dwc/terms/catalogNumber"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#Colector">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="es">Colector</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+    <skos:closeMatch rdf:resource="http://rs.tdwg.org/dwc/terms/recordedBy"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#esSinonimoDe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="es">es sinónimo de</rdfs:label>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Especie"/>
+    <rdfs:range rdf:resource="http://herbariograph.pe/ontologia#Especie"/>
+    <rdfs:comment xml:lang="es">Une un nombre sinónimo con el nombre aceptado.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#Region">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="es">Región</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dc/terms/Location"/>
+    <skos:closeMatch rdf:resource="http://rs.tdwg.org/dwc/terms/stateProvince"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#colectadoEn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="es">colectado en</rdfs:label>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Colecta"/>
+    <rdfs:range rdf:resource="http://herbariograph.pe/ontologia#Localidad"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#Publicacion">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="es">Publicación</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dc/terms/BibliographicResource"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#Herbario">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="es">Herbario</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+    <skos:closeMatch rdf:resource="http://rs.tdwg.org/dwc/terms/institutionCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#provieneDe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="es">proviene de</rdfs:label>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Especimen"/>
+    <rdfs:range rdf:resource="http://herbariograph.pe/ontologia#Colecta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#depositadoEn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="es">depositado en</rdfs:label>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Especimen"/>
+    <rdfs:range rdf:resource="http://herbariograph.pe/ontologia#Herbario"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#extraidoDe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="es">extraído de</rdfs:label>
+    <rdfs:range rdf:resource="http://herbariograph.pe/ontologia#Fuente"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/ns/prov#wasDerivedFrom"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#fechaColecta">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Colecta"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <skos:closeMatch rdf:resource="http://rs.tdwg.org/dwc/terms/eventDate"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="es">HerbarioGraph</rdfs:label>
+    <rdfs:comment xml:lang="es">Ontología del proyecto HerbarioGraph (Gestión del Conocimiento, UNMSM 2026-II). Alineada al estándar Darwin Core (TDWG), que es el que usa GBIF.</rdfs:comment>
+    <owl:versionInfo>0.2 - avance 1</owl:versionInfo>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#Taxon">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="es">Taxón</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://rs.tdwg.org/dwc/terms/Taxon"/>
+    <rdfs:comment xml:lang="es">Grupo taxonómico de cualquier rango.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#Especimen">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="es">Espécimen</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://rs.tdwg.org/dwc/terms/Occurrence"/>
+    <rdfs:comment xml:lang="es">Ejemplar de herbario (en Darwin Core: basisOfRecord = PreservedSpecimen).</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#Colecta">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="es">Colecta</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://rs.tdwg.org/dwc/terms/Event"/>
+    <rdfs:comment xml:lang="es">Evento de colecta: dónde, cuándo, a qué altitud y por quién.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#Especie">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="es">Especie</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://herbariograph.pe/ontologia#Taxon"/>
+    <rdfs:comment xml:lang="es">Nombre de especie, aceptado o sinónimo.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://herbariograph.pe/ontologia#nombreCientifico">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://herbariograph.pe/ontologia#Taxon"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <skos:closeMatch rdf:resource="http://rs.tdwg.org/dwc/terms/scientificName"/>
+  </rdf:Description>
+</rdf:RDF>

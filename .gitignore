@@ -1,0 +1,10 @@
+# credenciales: NUNCA subir
+.env
+# entorno virtual y caché
+.venv/
+__pycache__/
+*.pyc
+# PDF pesados (cada uno los descarga); los resultados sí se suben
+data/pdfs/*.pdf
+# programas locales (no son parte del proyecto)
+Protege-5.6.9/
